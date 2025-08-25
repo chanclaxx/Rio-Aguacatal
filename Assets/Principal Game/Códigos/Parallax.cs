@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    [System.Serializable]
+   [System.Serializable]
     public class CapaParallax
     {
         public Transform capa;          // El sprite o fondo
