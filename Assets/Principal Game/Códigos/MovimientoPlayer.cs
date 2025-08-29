@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovimientoPlayer : MonoBehaviour
 {
-  [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
 
     [Header("Movimiento")]
     private float horizontal;
@@ -24,7 +24,7 @@ public class MovimientoPlayer : MonoBehaviour
         // Salto con Space
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, speedSalto);
+            rb.velocity = new Vector2(rb.velocity.x, speedSalto);
         }
 
         voltear();
@@ -32,7 +32,7 @@ public class MovimientoPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(horizontal * velocidad, rb.linearVelocity.y);
+        rb.velocity = new Vector2(horizontal * velocidad, rb.velocity.y);
     }
 
     private void voltear()
