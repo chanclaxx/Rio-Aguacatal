@@ -1,9 +1,12 @@
-using UnityEngine.SceneManagement;
+
+
+
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class tiempoBarra : MonoBehaviour
 {
-      public float tiempoTotal = 100f;   // Tiempo inicial
+    public float tiempoTotal = 100f;   // Tiempo inicial 
     private float tiempoRestante;
 
     public Transform barra;            // La barra que representa el tiempo
@@ -21,7 +24,7 @@ public class tiempoBarra : MonoBehaviour
 
     void Update()
     {
-        if (tiempoDetenido) return; // Si ya se detuvo, no hacer nada
+        if (tiempoDetenido) return;
 
         if (tiempoRestante > 0f)
         {
@@ -30,11 +33,15 @@ public class tiempoBarra : MonoBehaviour
             float porcentaje = Mathf.Clamp01(tiempoRestante / tiempoTotal);
             float nuevaEscalaX = escalaInicial.x * porcentaje;
 
-            // 🔄 Invertido: de derecha a izquierda
+            // ✅ Escala solo en X
             barra.localScale = new Vector3(nuevaEscalaX, escalaInicial.y, escalaInicial.z);
 
-            float diferencia = (escalaInicial.x - nuevaEscalaX) / 2f;
-            barra.localPosition = new Vector3(posicionInicial.x - diferencia, posicionInicial.y, posicionInicial.z);
+            // ✅ Mantener la barra fija en la izquierda (solo se encoge a la derecha)
+            barra.localPosition = new Vector3(
+                posicionInicial.x - (escalaInicial.x - nuevaEscalaX) / 2f,
+                posicionInicial.y,
+                posicionInicial.z
+            );
         }
         else
         {
@@ -47,8 +54,6 @@ public class tiempoBarra : MonoBehaviour
     {
         Debug.Log("¡Tiempo terminado!");
         tiempoDetenido = true;
-
-        // 🔄 Cargar la escena de Game Over
         SceneManager.LoadScene("Game Over");
     }
 
@@ -56,8 +61,6 @@ public class tiempoBarra : MonoBehaviour
     {
         tiempoDetenido = true; 
         Debug.Log("¡Ha llegado a salvo!");
-
-        // 🔄 Cargar la escena de Victoria
         SceneManager.LoadScene("Victoria");
     }
 
@@ -68,3 +71,5 @@ public class tiempoBarra : MonoBehaviour
         Debug.Log("Tiempo aumentado en " + segundos + " segundos.");
     }
 }
+
+    

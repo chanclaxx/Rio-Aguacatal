@@ -4,29 +4,38 @@ using UnityEngine;
 
 public class LloverElementMalos : MonoBehaviour
 {
-    public GameObject[] elementosMalos;   // Tus 5 elementos malos
-    public Transform[] posiciones;        // Las posiciones en escena donde aparecerán
-    public float intervaloMin = 0.5f;     // Tiempo mínimo entre caídas
-    public float intervaloMax = 2f;       // Tiempo máximo entre caídas
+    [Header("Prefabs de elementos malos")]
+    public GameObject[] elementosMalos;     // Prefabs de elementos malos
+
+    [Header("Puntos fijos de spawn")]
+    public Transform[] puntosSpawn;         // Lugares donde pueden aparecer
+
+    [Header("Tiempos de spawn (más rápido)")]
+    public float tiempoMinSpawn = 1.5f;   // más rápido que antes
+    public float tiempoMaxSpawn = 3f;     
 
     void Start()
     {
-        StartCoroutine(GenerarElementos());
+        StartCoroutine(LluviaInfinita());
     }
 
-    IEnumerator GenerarElementos()
+    IEnumerator LluviaInfinita()
     {
-        while (true) // loop infinito
+        while (true)
         {
-            for (int i = 0; i < elementosMalos.Length; i++)
-            {
-                // Instancia el elemento en la posición de escena
-                Instantiate(elementosMalos[i], posiciones[i].position, Quaternion.identity);
+            float espera = Random.Range(tiempoMinSpawn, tiempoMaxSpawn);
+            yield return new WaitForSeconds(espera);
 
-                // Espera un tiempo aleatorio antes de generar el siguiente
-                float delay = Random.Range(intervaloMin, intervaloMax);
-                yield return new WaitForSeconds(delay);
-            }
+            // Elegir un elemento al azar
+            int indexElemento = Random.Range(0, elementosMalos.Length);
+            GameObject prefab = elementosMalos[indexElemento];
+
+            // Elegir un punto fijo al azar
+            int indexPunto = Random.Range(0, puntosSpawn.Length);
+            Vector3 spawnPos = puntosSpawn[indexPunto].position;
+
+            // Instanciar el objeto
+            Instantiate(prefab, spawnPos, Quaternion.identity);
         }
     }
 }

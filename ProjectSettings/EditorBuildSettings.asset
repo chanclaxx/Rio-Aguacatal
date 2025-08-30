@@ -8,4 +8,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Contexto/Contexto.unity
+    guid: 733994d52820c614cb74269d293be387
+  - enabled: 1
+    path: Assets/Escenas de carga/Loading 1.unity
+    guid: 72f9291080a26f14d86a9d87faf8e58d
+  - enabled: 1
+    path: Assets/Menu/Menu.unity
+    guid: a9392c0145b6ab34e8a9d841cc84be1d
+  - enabled: 1
+    path: Assets/Instrucciones/Instrucciones.unity
+    guid: cc3f82e57c43eb74b8471b9ca365df29
+  - enabled: 1
+    path: Assets/Victoria y game over/Game Over.unity
+    guid: fdbb571f2ec08514f82db4b144b188d9
+  - enabled: 1
+    path: Assets/Principal Game/Plataformas.unity
+    guid: c6f7fe0a21a901a41b5e454cb5a4cc2b
+  - enabled: 1
+    path: Assets/Victoria y game over/Victoria.unity
+    guid: a95a74e86d8cd424faf2c10d4022820f
   m_configObjects: {}
