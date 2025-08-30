@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ElementoMalo : MonoBehaviour
 {
-   public float velocidadCaida = 2f;         // Velocidad de caída
+public float velocidadCaida = 2f;         // Velocidad de caída
     public float distanciaParpadeo = 2f;      // Distancia al Player para parpadear
     public float tiempoParpadeo = 0.2f;       // Intervalo de parpadeo
     private SpriteRenderer spriteRenderer;

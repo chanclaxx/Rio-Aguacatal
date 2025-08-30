@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LloverElementMalos : MonoBehaviour
 {
-   public GameObject[] elementosMalos;   // Tus 5 elementos malos
+    public GameObject[] elementosMalos;   // Tus 5 elementos malos
     public Transform[] posiciones;        // Las posiciones en escena donde aparecerán
     public float intervaloMin = 0.5f;     // Tiempo mínimo entre caídas
     public float intervaloMax = 2f;       // Tiempo máximo entre caídas
