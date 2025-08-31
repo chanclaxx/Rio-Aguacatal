@@ -2,22 +2,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
-    [Header("UI Elements")]
+     [Header("UI Elements")]
     public TextMeshProUGUI dialogueText; // Asigna tu TMP Text aquí
     public Button nextButton;
 
     [Header("Dialogues")]
     private string[] dialogueLines = new string[]
     {
-        "¡Hola, viajero! No todos los días alguien viene a visitarnos por el río Aguacatal…",
-        "¿Sabías que este lugar es el corazón de nuestra comunidad? Pero algo anda mal… El agua ya no es tan clara como antes",
-        "Mira a tu alrededor, ¿ves esas bolsas y botellas? Cada día llegan más, la basura se acumula y está enfermando al río… y también a nosotros",
-        "La contaminación no solo afecta al ambiente, también a nuestra cultura… Por eso necesitamos tu ayuda",
-        "Cada misión que realices en este juego será un pequeño paso para devolverle la vida al Aguacatal",
-        "¿Aceptas unirte a nosotros y luchar por nuestro río?"
+        "¡Hola, viajero! Bienvenido al río Aguacatal, el corazón de nuestra comunidad",
+
+        "Pero estamos en peligro… la basura, la contaminación y el abandono nos están enfermando",
+
+        "El Aguacatal ya no es el mismo, y nuestra gente también sufre sus heridas",
+
+        "Necesitamos tu ayuda, cada misión será un paso para devolverle la vida al río",
+
+        "¿Aceptarás luchar junto a nosotros por el Aguacatal?",
     };
 
     private int currentLine = 0;
@@ -66,7 +70,8 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false); // Oculta el panel al terminar
+            // Aquí cargas la escena Contexto
+            SceneManager.LoadScene("Contexto");
         }
     }
 }
