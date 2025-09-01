@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     [Header("UI - Corazones")]
     public Image[] corazones; // arrastra aquí las imágenes de corazones (3 en tu caso)
-
+    
     public void RecibirDaño(int cantidad)
     {
         vidas -= cantidad;

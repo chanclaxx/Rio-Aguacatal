@@ -6,6 +6,9 @@ public class MovimientoPlayer : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
 
+    // Animación
+    private Animator anim;
+
     [Header("Movimiento")]
     private float horizontal;
     public float velocidad = 5f;
@@ -16,15 +19,29 @@ public class MovimientoPlayer : MonoBehaviour
     public Transform checkpiso;
     public LayerMask layerPiso;
 
+    private void Start()
+    {
+        anim = transform.GetChild(0).GetComponent<Animator>();
+    }
+
     private void Update()
     {
         // Movimiento horizontal (A-D o flechas)
         horizontal = Input.GetAxisRaw("Horizontal");
 
+        if (horizontal < 0)
+        {
+            transform.GetChild(0).localScale = new Vector3(-1, 1, 0);
+        }
+        else if (horizontal > 0) transform.GetChild(0).localScale = new Vector3(1, 1);
+
+        //Aplicar animacion
+        anim.SetBool("run", horizontal != 0);
+
         // Salto con Space
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
-            rb.velocity = new Vector2(rb.velocity.x, speedSalto);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, speedSalto);
         }
 
         voltear();
@@ -32,7 +49,7 @@ public class MovimientoPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * velocidad, rb.velocity.y);
+        rb.linearVelocity = new Vector2(horizontal * velocidad, rb.linearVelocity.y);
     }
 
     private void voltear()
