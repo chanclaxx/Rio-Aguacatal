@@ -29,13 +29,7 @@ public class MovimientoPlayer : MonoBehaviour
         // Movimiento horizontal (A-D o flechas)
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (horizontal < 0)
-        {
-            transform.GetChild(0).localScale = new Vector3(-1, 1, 0);
-        }
-        else if (horizontal > 0) transform.GetChild(0).localScale = new Vector3(1, 1);
-
-        //Aplicar animacion
+        // Aplicar animación de correr
         anim.SetBool("run", horizontal != 0);
 
         // Salto con Space
@@ -44,7 +38,15 @@ public class MovimientoPlayer : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, speedSalto);
         }
 
-        voltear();
+        // Voltear al moverse
+        if (horizontal > 0 && !mirandoDerecha)
+        {
+            voltear();
+        }
+        else if (horizontal < 0 && mirandoDerecha)
+        {
+            voltear();
+        }
     }
 
     private void FixedUpdate()
@@ -54,11 +56,10 @@ public class MovimientoPlayer : MonoBehaviour
 
     private void voltear()
     {
-        if ((mirandoDerecha && horizontal < 0f) || (!mirandoDerecha && horizontal > 0f))
-        {
-            mirandoDerecha = !mirandoDerecha;
-            transform.Rotate(0f, 180f, 0f);
-        }
+        mirandoDerecha = !mirandoDerecha;
+        Vector3 escala = transform.GetChild(0).localScale;
+        escala.x *= -1;
+        transform.GetChild(0).localScale = escala;
     }
 
     private bool isGrounded()
