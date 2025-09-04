@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
-     [Header("UI Elements")]
-    public TextMeshProUGUI dialogueText; // Asigna tu TMP Text aquí
+    [Header("UI Elements")]
+    public TextMeshProUGUI dialogueText;
     public Button nextButton;
+    public Button acceptButton; // Botón que aparecerá al final
 
     [Header("Dialogues")]
     private string[] dialogueLines = new string[]
@@ -30,12 +31,16 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         nextButton.onClick.AddListener(NextLine);
+        acceptButton.onClick.AddListener(LoadContextScene);
+
+        // Ocultar el botón Aceptar al inicio
+        acceptButton.gameObject.SetActive(false);
+
         ShowLine();
     }
 
     void ShowLine()
     {
-        // Detener escritura anterior si existe
         if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
 
@@ -54,7 +59,6 @@ public class DialogueManager : MonoBehaviour
 
     void NextLine()
     {
-        // Si aún se está escribiendo, mostrar la línea completa
         if (dialogueText.text != dialogueLines[currentLine])
         {
             StopCoroutine(typingCoroutine);
@@ -70,8 +74,14 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            // Aquí cargas la escena Contexto
-            SceneManager.LoadScene("Contexto");
+            // Al terminar, ocultamos el botón NEXT y mostramos el de Aceptar
+            nextButton.gameObject.SetActive(false);
+            acceptButton.gameObject.SetActive(true);
         }
+    }
+
+    void LoadContextScene()
+    {
+        SceneManager.LoadScene("Contexto");
     }
 }

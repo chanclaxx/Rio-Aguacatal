@@ -35,7 +35,7 @@ public class MovimientoPlayer : MonoBehaviour
         // Salto con Space
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, speedSalto);
+            rb.velocity = new Vector2(rb.velocity.x, speedSalto);
         }
 
         // Voltear al moverse
@@ -51,7 +51,7 @@ public class MovimientoPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(horizontal * velocidad, rb.linearVelocity.y);
+        rb.velocity = new Vector2(horizontal * velocidad, rb.velocity.y);
     }
 
     private void voltear()
