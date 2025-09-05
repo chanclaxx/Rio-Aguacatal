@@ -25,7 +25,7 @@ EditorBuildSettings:
     guid: c6f7fe0a21a901a41b5e454cb5a4cc2b
   - enabled: 1
     path: Assets/Victoria y game over/Game Over.unity
-    guid: fdbb571f2ec08514f82db4b144b188d9
+    guid: 4e83df32ae08add42aef73ff80d1dc20
   - enabled: 1
     path: Assets/Victoria y game over/Victoria.unity
     guid: a95a74e86d8cd424faf2c10d4022820f
@@ -33,4 +33,3 @@ EditorBuildSettings:
     path: Assets/Menu/Menu2.unity
     guid: 100a795a02ca2e84c95abedd9a2d4d2c
   m_configObjects: {}
-  m_UseUCBPForAssetBundles: 0
