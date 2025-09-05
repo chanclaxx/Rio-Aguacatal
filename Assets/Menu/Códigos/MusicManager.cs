@@ -4,29 +4,44 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    private static MusicManager instance;   // Singleton
-    private AudioSource audioSource;
+    private static MusicManager instance;
 
-    void Awake()
+    private AudioSource audioSource;
+    private static bool isMuted = false; // estado global
+
+    private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); 
-            audioSource = GetComponent<AudioSource>();
+            DontDestroyOnLoad(gameObject); // persiste entre escenas
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // evita duplicados
+            return;
         }
+
+        audioSource = GetComponent<AudioSource>();
+        AplicarMute();
     }
 
     public void ToggleMute()
     {
+        isMuted = !isMuted;
+        AplicarMute();
+    }
+
+    private void AplicarMute()
+    {
         if (audioSource != null)
-        {
-            audioSource.mute = !audioSource.mute;
-            Debug.Log("Música muteada: " + audioSource.mute);
-        }
+            audioSource.mute = isMuted;
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        // Cuando cambias de escena, asegúrate de aplicar el mute
+        audioSource = GetComponent<AudioSource>();
+        AplicarMute();
     }
 }

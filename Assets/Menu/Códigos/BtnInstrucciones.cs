@@ -5,6 +5,6 @@ public class BtnInstrucciones : MonoBehaviour
 {
     public void IrAEscenaContexto()
     {
-        SceneManager.LoadScene("Contexto");
+        SceneManager.LoadScene("Instrucciones");
     }
 }

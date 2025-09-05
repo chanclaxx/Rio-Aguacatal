@@ -4,9 +4,9 @@ using System.Collections;
 
 public class ContadorElementos : MonoBehaviour
 {
-public static ContadorElementos instancia;
+    public static ContadorElementos instancia;
     public int elementosBuenos = 0;                  // Elementos recolectados
-    public int totalElementosBuenos = 6;            // Total de elementos a recolectar
+    public int totalElementosBuenos = 7;            // Total de elementos a recolectar
     public TextMeshProUGUI textoContador;           // Referencia al texto en UI
 
     private Vector3 escalaOriginal;
